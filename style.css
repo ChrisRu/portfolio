@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-size: 1.1em;
+  font-family: 'IBM Plex Serif', Cambria, Cochin, Georgia, Times, serif;
+  margin-top: 30vh;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em 3em;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  font-size: 2.2em;
+}
+
+p {
+  margin: 0;
+  font-size: 1.1em;
+  max-width: 30em;
+}
+
+a {
+  color: #0055ff;
+}
+
+a:hover {
+  color: #0000dd;
+}
+
+a:visited {
+  color: #5500ee;
+}
+
+a:visited:hover {
+  color: #0000dd;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  cursor: pointer;
+  display: inline-block;
+}
+
+svg {
+  user-select: none;
+}
+
+.theme-toggle svg {
+  width: 1.8em;
+  height: 1.8em;
+}
+
+.theme-toggle:hover .theme-toggle__path {
+  fill: #444;
+}
+
+.theme-toggle:hover .theme-toggle__circle {
+  stroke: #444;
+}
+
+.dark .theme-toggle:hover .theme-toggle__path {
+  fill: #ddd;
+}
+
+.dark .theme-toggle:hover .theme-toggle__circle {
+  stroke: #ddd;
+}
+
+.theme-toggle__path {
+  fill: #000;
+}
+
+.dark .theme-toggle__path {
+  fill: #fff;
+}
+
+.theme-toggle__circle {
+  stroke: #000;
+}
+
+.dark .theme-toggle__circle {
+  stroke: #fff;
+}
+
+.dark {
+  color: #fff;
+  background-color: #181818;
+}
+
+@media (max-width: 30em) {
+  body {
+    font-size: 0.9em;
+    padding: 1em;
+    margin-top: 0;
+    height: 100vh;
+  }
+  h1 {
+    font-size: 1.7em;
+  }
+}

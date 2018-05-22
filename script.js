@@ -52,8 +52,8 @@ function initAnimate(diameter, toColor) {
 
     animationCircle.style.height = current + 'px';
     animationCircle.style.width = current + 'px';
-    animationCircle.style.top = -(current / 2) + 34 + 'px';
-    animationCircle.style.right = -(current / 2) + 34 + 'px';
+    animationCircle.style.top = 'calc(' + -(current / 2) + 'px + 1.9em)';
+    animationCircle.style.right = 'calc(' + -(current / 2) + 'px + 1.9em)';
 
     requestAnimationFrame(animate);
   })();

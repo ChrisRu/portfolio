@@ -46,18 +46,25 @@ p {
 
 a {
   color: #0055ff;
+  -webkit-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
 a:hover {
-  color: #0000dd;
-}
-
-a:visited {
-  color: #5500ee;
+  color: #0033dd;
 }
 
 a:visited:hover {
   color: #0000dd;
+}
+
+.dark a {
+  color: #FFD55F;
+}
+
+.dark a:hover {
+  color: #FFC82C;
 }
 
 .animation-circle {

@@ -26,7 +26,7 @@ function updateTheme(fromToggle) {
 function initAnimate(diameter, toColor) {
   const animationCircle = document.querySelector('.animation-circle');
   animationCircle.style.opacity = 1;
-  animationCircle.style.backgroundColor = toColor ? '#000' : '#fff';
+  animationCircle.style.backgroundColor = toColor ? '#181818' : '#fff';
 
   let current = 20;
   return (function animate() {

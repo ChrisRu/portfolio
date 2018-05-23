@@ -9,27 +9,14 @@ body {
   font-size: 1.1em;
   color: #181818;
   font-family: 'IBM Plex Serif', Cambria, Cochin, Georgia, Times, serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  box-orient: vertical;
-  box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  box-pack: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 100vh;
   width: 100vw;
   position: relative;
   overflow: hidden;
-  -webkit-transition: color 0.5s ease;
-  -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
 
@@ -39,7 +26,11 @@ h1 {
   font-size: 2.2em;
 }
 
-p {
+h2 {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+}
+
+.about-text {
   margin: 0;
   font-size: 1.1em;
   max-width: 30em;
@@ -47,8 +38,6 @@ p {
 
 a {
   color: #0055ff;
-  -webkit-transition: color 0.5s ease;
-  -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
 
@@ -72,23 +61,110 @@ a:visited:hover {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   z-index: 5;
 }
 
-.about {
+.details {
   margin-top: auto;
-  margin-bottom: 30vh;
+  margin-bottom: 10vh;
   padding: 1em 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projects {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  display: flex;
+  min-height: 25vw;
+  margin: 0 0 0 10vw;
+  z-index: 20;
+  box-shadow: 0 2px 20px 1px rgba(0, 0, 0, 0.2);
+}
+
+.project-slider {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.project-slide {
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  float: left;
+  transition: width 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+  overflow: hidden;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.project-slide--blue {
+  background: blue;
+}
+
+.project-slide--green {
+  background: green;
+}
+
+.project-slide.hidden {
+  width: 0;
+  padding: 1em 0;
+  opacity: 0;
+}
+
+.project-controls {
+  display: block;
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  height: 16px;
+  width: 16px;
+  padding: 0;
+  margin: 0 12px 0 0;
+  background: white;
+  outline: none;
+  border: 0;
+  transition: box-shadow 0.1s ease, opacity 0.1s ease;
+  box-shadow: 0 2px 20px 1px rgba(0, 0, 0, 0.2);
+}
+
+.dot:not(.active) {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.dot:not(.active):hover {
+  box-shadow: 0 4px 16px 3px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+.date {
+  opacity: 0.4;
+  margin-left: 0.5em;
 }
 
 .theme-toggle {
   top: 2em;
   right: 2em;
-  cursor: pointer;
   text-align: right;
   padding: 1em;
 }
@@ -102,12 +178,11 @@ a:visited:hover {
   user-select: none;
   position: relative;
   z-index: 10;
+  cursor: pointer;
 }
 
 .theme-toggle__path {
   fill: #181818;
-  -webkit-transition: fill 0.5s ease;
-  -o-transition: fill 0.5s ease;
   transition: fill 0.5s ease;
 }
 
@@ -117,8 +192,6 @@ a:visited:hover {
 
 .theme-toggle__circle {
   stroke: #181818;
-  -webkit-transition: stroke 0.5s ease;
-  -o-transition: stroke 0.5s ease;
   transition: stroke 0.5s ease;
 }
 
@@ -126,19 +199,19 @@ a:visited:hover {
   stroke: #fff;
 }
 
-.theme-toggle:hover .theme-toggle__path {
+.theme-toggle svg:hover .theme-toggle__path {
   fill: #444;
 }
 
-.theme-toggle:hover .theme-toggle__circle {
+.theme-toggle svg:hover .theme-toggle__circle {
   stroke: #444;
 }
 
-.dark .theme-toggle:hover .theme-toggle__path {
+.dark .theme-toggle svg:hover .theme-toggle__path {
   fill: #ddd;
 }
 
-.dark .theme-toggle:hover .theme-toggle__circle {
+.dark .theme-toggle svg:hover .theme-toggle__circle {
   stroke: #ddd;
 }
 
@@ -147,14 +220,40 @@ a:visited:hover {
   background-color: #181818;
 }
 
+@media (max-width: 80em) {
+  .details {
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin-bottom: 15vh;
+  }
+
+  .projects {
+    margin: 3rem 0 0;
+    width: 100%;
+    max-width: 60vw;
+    height: 40vw;
+  }
+}
+
+@media (max-width: 60em) {
+  .details {
+    margin-bottom: 20vh;
+  }
+
+  .projects {
+    max-width: 80vw;
+    height: 60vw;
+  }
+}
+
 @media (max-width: 30em) {
   body {
     font-size: 0.9em;
   }
-  .about {
+  .details {
     padding: 1em 2em;
   }
-  h1 {
+  .about-title {
     font-size: 1.7em;
   }
 }

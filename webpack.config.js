@@ -8,7 +8,7 @@ const config = {
   entry: path.resolve(__dirname, 'src/scripts/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -31,12 +31,12 @@ const config = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      filename: path.resolve(__dirname, 'docs/index.html'),
+      filename: path.resolve(__dirname, 'dist/index.html'),
       template: path.resolve(__dirname, 'src/index.html')
     })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'docs')
+    contentBase: path.resolve(__dirname, 'dist')
   }
 };
 

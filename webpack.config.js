@@ -46,8 +46,8 @@ const config = {
     }),
     new CopyWebpackPlugin([
       {
-        from: 'src/assets',
-        to: 'dist/assets'
+        from: 'public',
+        to: '.'
       }
     ])
   ],

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -26,6 +27,15 @@ const config = {
             loader: 'html-loader'
           }
         ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
       }
     ]
   },
@@ -33,7 +43,13 @@ const config = {
     new HtmlWebPackPlugin({
       filename: path.resolve(__dirname, 'dist/index.html'),
       template: path.resolve(__dirname, 'src/index.html')
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: 'src/assets',
+        to: 'dist/assets'
+      }
+    ])
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'dist')

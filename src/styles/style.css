@@ -68,7 +68,7 @@ a:visited:hover {
 
 .details {
   margin-top: auto;
-  margin-bottom: 10vh;
+  margin-bottom: 20vh;
   padding: 1em 3em;
   display: flex;
   justify-content: space-between;
@@ -102,6 +102,20 @@ a:visited:hover {
   overflow: hidden;
   transform-origin: 0 0;
   box-sizing: border-box;
+  text-align: center;
+}
+
+.project-slide p,
+.project-slide h2 {
+  text-align: left;
+}
+
+.project-slide p {}
+
+.project-slide img {
+  display: none;
+  max-width: 100%;
+  max-height: 81%;
 }
 
 .project-slide--blue {
@@ -226,7 +240,6 @@ a:visited:hover {
     justify-content: center;
     margin-bottom: 15vh;
   }
-
   .projects {
     margin: 3rem 0 0;
     width: 100%;
@@ -239,7 +252,6 @@ a:visited:hover {
   .details {
     margin-bottom: 20vh;
   }
-
   .projects {
     max-width: 80vw;
     height: 60vw;

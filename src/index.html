@@ -1,75 +1,70 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:600|IBM+Plex+Serif:400"
+      rel="stylesheet"
+    />
+    <title>Christian Ruigrok</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:600|IBM+Plex+Serif:400" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css" />
-  <title>Christian Ruigrok</title>
-</head>
-
-<body>
-  <div class="theme-toggle">
-    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <title>Toggle Theme</title>
-      <circle class="theme-toggle__circle" cx="26" cy="26" r="21" stroke-width="8" />
-      <mask id="a" maskUnits="userSpaceOnUse" x="1" y="1" width="50" height="50">
-        <circle cx="26" cy="26" r="25" fill="#fff" />
-      </mask>
-      <g mask="url(#a)">
-        <path class="theme-toggle__path" d="M26 1h26v50H26z" />
-      </g>
-    </svg>
-    <div class="animation-circle"></div>
-  </div>
-
-  <div class="details">
-    <div class="about">
-      <h1 class="about-title">Christian Ruigrok</h1>
-      <p class="about-text">
-        A software engineer with a passion for the web. I spend my time studying and writing
-        <a class="about-link" href="//github.com/ChrisRu">code</a>. I am currently not available for work, but feel free to
-        <a class="about-link" href="mailto:christian@ruigrok.info">contact me</a>.
-      </p>
+  <body>
+    <div class="theme-toggle">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <title>Toggle Theme</title>
+        <circle
+          class="theme-toggle__circle"
+          cx="26"
+          cy="26"
+          r="21"
+          stroke-width="8"
+        />
+        <mask
+          id="a"
+          maskUnits="userSpaceOnUse"
+          x="1"
+          y="1"
+          width="50"
+          height="50"
+        >
+          <circle cx="26" cy="26" r="25" fill="#fff" />
+        </mask>
+        <g mask="url(#a)">
+          <path class="theme-toggle__path" d="M26 1h26v50H26z" />
+        </g>
+      </svg>
+      <div class="animation-circle"></div>
     </div>
-    <!-- <div class="projects">
-      <div class="project-slider">
-        <div class="project-slide project-slide--green">
-          <h2>MQM Tuinontwerpen
-            <span class="date">2016</span>
-          </h2>
-          <p>
 
-          </p>
-          <img src="assets/mqm.png" alt="MQM Tuinontwerpen Website Screenshot" />
-        </div>
-        <div class="project-slide project-slide--blue hidden">
-          <h2>BGT
-            <span class="date">2018</span>
-          </h2>
-          <p>
-            A web application built for BGT Den Haag
-          </p>
-          <img src="assets/bgt.png" alt="MQM Tuinontwerpen Website Screenshot" />
-        </div>
-        <div class="project-controls"></div>
-      </div> -->
-  </div>
+    <div class="details">
+      <div class="about">
+        <h1 class="about-title">Christian Ruigrok</h1>
+        <p class="about-text">
+          A software engineer with a passion for the web. I spend my time
+          studying and writing
+          <a class="about-link" href="//github.com/ChrisRu">code</a>. I am
+          currently not available for work, but feel free to
+          <a class="about-link" href="mailto:christian@ruigrok.info"
+            >contact me</a
+          >.
+        </p>
+      </div>
+    </div>
 
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-58105551-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58105551-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-58105551-1');
-
-  </script>
-</body>
-
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-58105551-1');
+    </script>
+  </body>
 </html>

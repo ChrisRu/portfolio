@@ -1,17 +1,16 @@
 export const $ = document.querySelector.bind(document);
 export const $$ = s => Array.from(document.querySelectorAll(s));
 
-export const createElement = (className = '', content = '', type = 'div') => {
+export const createElement = (className, content, type = 'div') => {
   const element = document.createElement(type);
   element.className = className;
   element.textContent = content;
   return element;
 };
 
-export const localStorage = {
+export const storage = {
   get: (name, json = false) => {
     const item = window.localStorage.getItem(name);
-
     if (item && json) {
       return JSON.parse(json);
     }
@@ -21,7 +20,7 @@ export const localStorage = {
 
   set: (name, value, json = false) => {
     const item = json ? JSON.stringify(value) : value;
-    window.localStorage.setItem(name, value);
+    window.localStorage.setItem(name, item);
     return value;
   }
 };

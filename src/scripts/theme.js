@@ -1,31 +1,26 @@
-import { $, localStorage } from './util';
+import { $, storage } from './util';
 
-const state = {
-  darkTheme: false
-};
+let darkTheme = false;
 
 function toggleTheme(isDark) {
-  state.darkTheme = isDark;
+  darkTheme = isDark;
   updateTheme(true);
-  localStorage.set('theme', state.darkTheme ? 'dark' : 'light');
+  storage.set('theme', darkTheme ? 'dark' : 'light');
 }
 
 function updateTheme(fromToggle) {
   const diameterValue =
-    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) * 2;
+    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2;
 
   const hasClassDark = $('body').classList.contains('dark');
-  if (
-    (state.darkTheme && hasClassDark) ||
-    (!state.darkTheme && !hasClassDark)
-  ) {
+  if ((darkTheme && hasClassDark) || (!darkTheme && !hasClassDark)) {
     return;
   }
 
   if (fromToggle === true) {
-    initAnimate(diameterValue, state.darkTheme);
+    initAnimate(diameterValue, darkTheme);
   } else {
-    if (state.darkTheme) {
+    if (darkTheme) {
       $('body').classList.add('dark');
     }
   }
@@ -41,7 +36,7 @@ function initAnimate(diameter, toColor) {
     if (current > diameter) {
       animationCircle.style.opacity = 0;
 
-      if (state.darkTheme) {
+      if (darkTheme) {
         if ($('body').classList.contains('dark')) {
           return;
         }
@@ -56,12 +51,12 @@ function initAnimate(diameter, toColor) {
       }
     }
 
-    current += current * current / 800;
+    current += (current * current) / 800;
 
     animationCircle.style.height = `${current}px`;
     animationCircle.style.width = `${current}px`;
-    animationCircle.style.top = `calc(${-(current / 2)}px + 1.9em)`;
-    animationCircle.style.right = `calc(${-(current / 2)}px + 1.9em)`;
+    animationCircle.style.top = `calc(${-(current / 2)}px + 2.9em)`;
+    animationCircle.style.right = `calc(${-(current / 2)}px + 2.9em)`;
 
     requestAnimationFrame(animate);
   };
@@ -80,11 +75,11 @@ function setupKeys(event) {
 }
 
 function clickToggle() {
-  toggleTheme(!state.darkTheme);
+  toggleTheme(!darkTheme);
 }
 
 export default () => {
-  state.darkTheme = localStorage.get('theme') === 'dark';
+  darkTheme = storage.get('theme') === 'dark';
   updateTheme();
   $('.theme-toggle svg').addEventListener('click', clickToggle);
   window.addEventListener('keydown', setupKeys);

@@ -1,7 +1,6 @@
 export const $ = document.querySelector.bind(document);
-export const $$ = s => Array.from(document.querySelectorAll(s));
 
-export const createElement = (className, content, type = 'div') => {
+export const createElement = (className, content, type = "div") => {
   const element = document.createElement(type);
   element.className = className;
   element.textContent = content;

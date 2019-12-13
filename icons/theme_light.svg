@@ -1,9 +1,0 @@
-<svg width="50" height="50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="25" cy="25" r="21" stroke="#000" stroke-width="8"/>
-    <mask id="a" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
-        <circle cx="25" cy="25" r="25" fill="#C4C4C4"/>
-    </mask>
-    <g mask="url(#a)">
-        <path fill="#000" d="M25 0h25v50H25z"/>
-    </g>
-</svg>

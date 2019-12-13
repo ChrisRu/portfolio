@@ -1,60 +1,49 @@
 html {
-  overflow: hidden;
-  position: relative;
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-size: 1.1em;
+  padding: 4rem 10rem;
+  font-size: 1.2rem;
   color: #181818;
-  font-family: 'IBM Plex Serif', Cambria, Cochin, Georgia, Times, serif;
+  font-family: "IBM Plex Serif", Cambria, Cochin, Georgia, Times, serif;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-sizing: border-box;
-  height: 100vh;
-  width: 100vw;
-  position: relative;
+  height: 100%;
   overflow: hidden;
-  transition: color 0.5s ease;
+  transition: color 0.5s;
 }
 
 h1 {
   margin: 0;
-  font-family: 'Poppins', 'Montserrat', sans-serif;
+  font-family: "Poppins", "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
   font-size: 2.2em;
 }
 
 h2 {
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-}
-
-.about-text {
-  margin: 0;
-  font-size: 1.1em;
-  max-width: 30em;
+  font-family: "Poppins", "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
 }
 
 a {
   color: #0055ff;
-  transition: color 0.5s ease;
+  transition: color 0.5s;
 }
 
 a:hover {
   color: #0033dd;
 }
 
-a:visited:hover {
-  color: #0000dd;
-}
-
 .dark a {
-  color: #FFD55F;
+  color: #ffd55f;
 }
 
 .dark a:hover {
-  color: #FFC82C;
+  color: #ffc82c;
 }
 
 .animation-circle {
@@ -66,27 +55,16 @@ a:visited:hover {
   z-index: 5;
 }
 
-.details {
-  margin-top: auto;
-  margin-bottom: 30vh;
-  padding: 1em 3em;
-  padding-left: 10vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .theme-toggle {
-  text-align: right;
-  padding: 2em;
+  padding: 4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .theme-toggle svg {
-  width: 1.8em;
-  height: 1.8em;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  width: 1.6em;
+  height: 1.6em;
   user-select: none;
   position: relative;
   z-index: 10;
@@ -95,7 +73,7 @@ a:visited:hover {
 
 .theme-toggle__path {
   fill: #181818;
-  transition: fill 0.5s ease;
+  transition: fill 0.5s;
 }
 
 .dark .theme-toggle__path {
@@ -104,7 +82,7 @@ a:visited:hover {
 
 .theme-toggle__circle {
   stroke: #181818;
-  transition: stroke 0.5s ease;
+  transition: stroke 0.5s;
 }
 
 .dark .theme-toggle__circle {
@@ -132,27 +110,17 @@ a:visited:hover {
   background-color: #181818;
 }
 
-@media (max-width: 80em) {
-  .details {
-    flex-flow: column nowrap;
-    justify-content: center;
-    margin-bottom: 15vh;
-  }
+.about {
+  max-width: 40rem;
 }
 
-@media (max-width: 60em) {
-  .details {
-    margin-bottom: 20vh;
-  }
+.about-text {
+  margin: 0;
 }
 
-@media (max-width: 30em) {
+@media (max-width: 40rem) {
   body {
-    font-size: 0.9em;
-  }
-
-  .details {
-    padding: 1em 2em;
+    padding: 3rem;
   }
 
   .about-title {

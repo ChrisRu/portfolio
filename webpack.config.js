@@ -1,15 +1,15 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractTextPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 const config = {
-  entry: path.resolve(__dirname, 'src/scripts/index.js'),
+  entry: path.resolve(__dirname, "src/scripts/index.js"),
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   module: {
     rules: [
@@ -17,14 +17,27 @@ const config = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: "babel-loader"
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractTextPlugin.loader,
+            options: {
+              hmr: isDevelopment
+            }
+          },
+          "css-loader",
+          "postcss-loader"
+        ]
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: "html-loader"
           }
         ]
       },
@@ -32,7 +45,7 @@ const config = {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {}
           }
         ]
@@ -41,35 +54,23 @@ const config = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      filename: path.resolve(__dirname, 'dist/index.html'),
-      template: path.resolve(__dirname, 'src/index.html')
+      filename: path.resolve(__dirname, "dist/index.html"),
+      template: path.resolve(__dirname, "src/index.html")
     }),
     new CopyWebpackPlugin([
       {
-        from: 'public',
-        to: '.'
+        from: "public",
+        to: "."
       }
-    ])
+    ]),
+    new MiniCssExtractTextPlugin({
+      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+    })
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, "dist")
   }
 };
-
-if (isDevelopment) {
-  config.module.rules.push({
-    test: /\.css$/,
-    use: ['style-loader', 'postcss-loader']
-  });
-} else {
-  config.module.rules.push({
-    test: /\.css$/,
-    use: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: 'postcss-loader'
-    })
-  });
-  config.plugins.push(new ExtractTextPlugin('styles.css'));
-}
 
 module.exports = config;

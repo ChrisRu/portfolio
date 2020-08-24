@@ -8,17 +8,14 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 const config = {
   entry: path.resolve(__dirname, "src/scripts/index.js"),
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    filename: "[name].[hash].js",
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: "babel-loader",
       },
       {
         test: /\.css$/,
@@ -26,51 +23,44 @@ const config = {
           {
             loader: MiniCssExtractTextPlugin.loader,
             options: {
-              hmr: isDevelopment
-            }
+              hmr: isDevelopment,
+            },
           },
           "css-loader",
-          "postcss-loader"
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {}
-          }
-        ]
-      }
-    ]
+        use: "file-loader?name=images/[name].[hash].[ext]",
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: "file-loader?name=fonts/[name].[hash].[ext]",
+      },
+    ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      filename: path.resolve(__dirname, "dist/index.html"),
-      template: path.resolve(__dirname, "src/index.html")
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: "public",
-        to: "."
-      }
-    ]),
     new MiniCssExtractTextPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
-    })
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
+    }),
+    new HtmlWebPackPlugin({
+      // inject: false,
+      template: path.resolve(__dirname, "src/index.html"),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "public",
+          to: ".",
+        },
+      ],
+    }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, "dist")
-  }
+    contentBase: path.resolve(__dirname, "dist"),
+  },
 };
 
 module.exports = config;

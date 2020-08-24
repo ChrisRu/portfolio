@@ -46,7 +46,7 @@ const config = {
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
     new HtmlWebPackPlugin({
-      // inject: false,
+      inject: false,
       template: path.resolve(__dirname, "src/index.html"),
     }),
     new CopyWebpackPlugin({

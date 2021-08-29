@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta http-equiv="Content-Language" content="en" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#181818" />
-  <meta name="description" content="Christian Ruigrok's small landing page with some info, gimmicks and links" />
-  <%= htmlWebpackPlugin.tags.headTags %>
-  <title>Christian Ruigrok</title>
-  <div class="theme-toggle">
-    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <title>Toggle Theme</title>
-      <circle
-        class="theme-toggle__circle"
-        cx="26"
-        cy="26"
-        r="21"
-        stroke-width="7"
-      />
-      <mask
-        id="a"
-        maskUnits="userSpaceOnUse"
-        x="1"
-        y="1"
-        width="50"
-        height="50"
-      >
-        <circle cx="26" cy="26" r="25" fill="#fff" />
-      </mask>
-      <g mask="url(#a)">
-        <path class="theme-toggle__path" d="M26 1h26v50H26z" />
-      </g>
-    </svg>
-    <div class="animation-circle"></div>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#181818" />
+    <meta
+      name="description"
+      content="Christian Ruigrok's small landing page with some info, gimmicks and links"
+    />
+    <title>Christian Ruigrok</title>
+  </head>
+  <body class="no-transition">
+    <div class="theme-toggle">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <title>Toggle Theme</title>
+        <circle
+          class="theme-toggle__circle"
+          cx="26"
+          cy="26"
+          r="21"
+          stroke-width="7"
+        />
+        <mask
+          id="a"
+          maskUnits="userSpaceOnUse"
+          x="1"
+          y="1"
+          width="50"
+          height="50"
+        >
+          <circle cx="26" cy="26" r="25" fill="#fff" />
+        </mask>
+        <g mask="url(#a)">
+          <path class="theme-toggle__path" d="M26 1h26v50H26z" />
+        </g>
+      </svg>
+      <div class="animation-circle"></div>
+    </div>
 
-  <div class="about">
-    <h1 class="about-title">Christian Ruigrok</h1>
-    <p class="about-text">
-      A software engineer with a passion for the web. I spend my time studying
-      and writing
-      <a class="about-link" href="//github.com/ChrisRu">code</a>. Feel free to
-      <a class="about-link" href="mailto:christian@ruigrok.info"
-        >contact me and I'll try to respond as soon as possible</a
-      >.
-    </p>
-  </div>
-  <%= htmlWebpackPlugin.tags.bodyTags %>
+    <div class="about">
+      <h1 class="about-title">Christian Ruigrok</h1>
+      <p class="about-text">
+        A software engineer with a passion for the web. I spend my time studying
+        and writing
+        <a class="about-link" href="//github.com/ChrisRu">code</a>. Feel free to
+        <a class="about-link" href="mailto:hello@ruigrok.info"
+          >contact me and I'll try to respond as soon as possible</a
+        >.
+      </p>
+    </div>
+  </body>
 </html>

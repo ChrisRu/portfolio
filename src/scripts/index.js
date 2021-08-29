@@ -1,82 +1,93 @@
 import "../styles/style.css";
 
-const $ = document.querySelector.bind(document);
-
-function toggleTheme(darkTheme) {
-  localStorage.setItem("theme", darkTheme ? "dark" : "light");
-  updateTheme(true, darkTheme);
+function isThemeDark() {
+  return localStorage.getItem("theme") === "dark";
 }
 
-function updateTheme(fromToggle, darkTheme) {
-  const diameterValue =
-    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2;
+function updateTheme(isDark, animate = true) {
+  const hasClassDark = document.body.classList.contains("dark");
+  if (isDark !== hasClassDark) {
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 
-  const hasClassDark = $("body").classList.contains("dark");
-  if ((darkTheme && hasClassDark) || (!darkTheme && !hasClassDark)) {
-    return;
-  }
-
-  if (fromToggle === true) {
-    initAnimate(diameterValue, darkTheme);
-  } else {
-    if (darkTheme) {
-      $("body").classList.add("dark");
+    if (animate) {
+      initAnimation(isDark);
+    } else if (isDark) {
+      document.body.classList.add("dark");
     }
   }
 }
 
-function initAnimate(diameter, darkTheme) {
-  const animationCircle = $(".animation-circle");
+let animating = false;
+
+function initAnimation(darkTheme) {
+  if (animating) {
+    return;
+  }
+
+  animating = true;
+
+  const diameter =
+    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2;
+
+  const animationCircle = document.querySelector(".animation-circle");
   animationCircle.style.opacity = 1;
   animationCircle.style.backgroundColor = darkTheme ? "#181818" : "#fff";
 
   let current = 30;
-  const animate = () => {
+  function animate() {
     if (current > diameter) {
       animationCircle.style.opacity = 0;
 
       if (darkTheme) {
-        if ($("body").classList.contains("dark")) {
-          return;
-        }
-
-        $("body").classList.add("dark");
+        document.body.classList.add("dark");
       } else {
-        if (!$("body").classList.contains("dark")) {
-          return;
-        }
-
-        $("body").classList.remove("dark");
+        document.body.classList.remove("dark");
       }
+
+      animating = false;
+      return;
     }
 
     current += (current * current) / 800;
 
     animationCircle.style.height = `${current}px`;
     animationCircle.style.width = `${current}px`;
-    animationCircle.style.top = `calc(${-(current / 2)}px + 4.1em`;
-    animationCircle.style.right = `calc(${-(current / 2)}px + 4.1em)`;
+    animationCircle.style.top = `${-(current / 2) + 80}px`;
+    animationCircle.style.right = `${-(current / 2) + 80}px`;
 
     requestAnimationFrame(animate);
-  };
+  }
 
-  animate();
+  requestAnimationFrame(animate);
 }
 
 function setupKeys(event) {
-  if (event.keyCode === 76) {
-    return toggleTheme(false);
-  }
-
-  if (event.keyCode === 68) {
-    return toggleTheme(true);
+  switch (event.key) {
+    case "d":
+      updateTheme(true);
+      break;
+    case "l":
+      updateTheme(false);
+      break;
   }
 }
 
 function clickToggle() {
-  toggleTheme(!(localStorage.getItem("theme") === "dark"));
+  updateTheme(!isThemeDark());
 }
 
-updateTheme(false, localStorage.getItem("theme") === "dark");
-$(".theme-toggle svg").addEventListener("click", clickToggle);
-window.addEventListener("keydown", setupKeys);
+function main() {
+  document
+    .querySelector(".theme-toggle svg")
+    .addEventListener("click", clickToggle);
+  window.addEventListener("keydown", setupKeys);
+
+  updateTheme(isThemeDark(), false);
+  document.body.classList.remove("no-transition");
+}
+
+if (document.readyState == "complete") {
+  main();
+} else {
+  document.addEventListener("DOMContentLoaded", main);
+}

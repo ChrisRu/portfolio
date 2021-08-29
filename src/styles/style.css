@@ -2,14 +2,18 @@
   font-family: "IBM Plex Serif";
   font-display: swap;
   font-weight: 400;
-  src: url("../fonts/IBMPlexSerif-Regular.ttf");
+  src: url("../fonts/IBMPlexSerif-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins";
   font-display: swap;
-  font-weight: 400;
-  src: url("../fonts/Poppins-SemiBold.ttf");
+  font-weight: 500;
+  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
+.no-transition * {
+  transition: none !important;
 }
 
 html {

@@ -20,7 +20,7 @@ function updateTheme(isDark, animate = true) {
 let animating = false;
 
 function easing(x) {
-  return x * x * 0.05;
+  return x * x * 0.04;
 }
 
 function initAnimation(darkTheme) {
@@ -30,14 +30,31 @@ function initAnimation(darkTheme) {
 
   animating = true;
 
+  const toggleButton = document.querySelector(".theme-toggle");
+  const toggleButtonBoundingRect = toggleButton.getBoundingClientRect();
+
+  const animationCircleDefaultSize = 18;
+
   const diameter =
-    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2 / 18; // divided by size of animation-circle
+    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2 / animationCircleDefaultSize;
 
   const animationCircle = document.querySelector(".animation-circle");
   animationCircle.style.opacity = 1;
   animationCircle.style.backgroundColor = darkTheme ? "#181818" : "#fff";
+  animationCircle.style.height = animationCircleDefaultSize + "px";
+  animationCircle.style.width = animationCircleDefaultSize + "px";
+  animationCircle.style.top =
+    toggleButtonBoundingRect.top +
+    toggleButtonBoundingRect.height / 2 -
+    animationCircleDefaultSize / 2 +
+    "px";
+  animationCircle.style.left =
+    toggleButtonBoundingRect.left +
+    toggleButtonBoundingRect.width / 2 -
+    animationCircleDefaultSize / 2 +
+    "px";
 
-  let current = 1.001;
+  let current = 1;
   function animate() {
     if (current > diameter) {
       animationCircle.style.opacity = 0;
@@ -78,9 +95,7 @@ function clickToggle() {
 }
 
 function main() {
-  document
-    .querySelector(".theme-toggle")
-    .addEventListener("click", clickToggle);
+  document.querySelector(".theme-toggle").addEventListener("click", clickToggle);
   window.addEventListener("keydown", setupKeys);
 
   updateTheme(isThemeDark(), false);

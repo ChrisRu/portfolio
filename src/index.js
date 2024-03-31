@@ -1,4 +1,4 @@
-import "../styles/style.css";
+import "./style.css";
 
 function isThemeDark() {
   return localStorage.getItem("theme") === "dark";
@@ -52,8 +52,8 @@ function initAnimation(darkTheme) {
 
     animationCircle.style.height = `${current}px`;
     animationCircle.style.width = `${current}px`;
-    animationCircle.style.top = `${-(current / 2) + 80}px`;
-    animationCircle.style.right = `${-(current / 2) + 80}px`;
+    animationCircle.style.top = `${-(current / 2) + 13}px`;
+    animationCircle.style.right = `${-(current / 2) + 13}px`;
 
     requestAnimationFrame(animate);
   }
@@ -78,7 +78,7 @@ function clickToggle() {
 
 function main() {
   document
-    .querySelector(".theme-toggle svg")
+    .querySelector(".theme-toggle")
     .addEventListener("click", clickToggle);
   window.addEventListener("keydown", setupKeys);
 

@@ -1,3 +1,21 @@
+:root {
+  --bg: #fff;
+  --fg: #181818;
+  --fg-light: #444;
+  --link-fg: #0055ff;
+  --link-fg-hover: #0033dd;
+  --theme-ring: #00000033;
+}
+
+.dark {
+  --bg: #181818;
+  --fg: #fff;
+  --fg-light: #ddd;
+  --link-fg: #ffd55f;
+  --link-fg-hover: #ffc82c;
+  --theme-ring: #ffffff33;
+}
+
 @font-face {
   font-family: "IBM Plex Serif";
   font-display: swap;
@@ -24,7 +42,8 @@ body {
   margin: 0;
   padding: 4rem 10rem;
   font-size: 1.2rem;
-  color: #181818;
+  color: var(--fg);
+  background-color: var(--bg);
   font-family: "IBM Plex Serif", Cambria, Cochin, Georgia, Times, serif;
   position: relative;
   display: flex;
@@ -32,7 +51,7 @@ body {
   justify-content: center;
   height: 100%;
   overflow: hidden;
-  transition: color 0.5s;
+  transition: color 0.1s;
 }
 
 h1 {
@@ -40,6 +59,7 @@ h1 {
   font-family: "Poppins", "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana,
     sans-serif;
   font-size: 2.2em;
+  line-height: 1.2;
 }
 
 h2 {
@@ -48,20 +68,11 @@ h2 {
 }
 
 a {
-  color: #0055ff;
-  transition: color 0.5s;
+  color: var(--link-fg);
 }
 
 a:hover {
-  color: #0033dd;
-}
-
-.dark a {
-  color: #ffd55f;
-}
-
-.dark a:hover {
-  color: #ffc82c;
+  color: var(--link-fg-hover);
 }
 
 .animation-circle {
@@ -74,10 +85,22 @@ a:hover {
 }
 
 .theme-toggle {
-  padding: 4rem;
   position: absolute;
   top: 0;
   right: 0;
+  margin: 4rem;
+  appearance: none;
+  outline: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 0;
+  padding: 0.2em;
+}
+
+.theme-toggle:focus-visible {
+  box-shadow: 0 0 0 2px var(--theme-ring);
+  border-radius: 2rem;
 }
 
 .theme-toggle svg {
@@ -90,42 +113,21 @@ a:hover {
 }
 
 .theme-toggle__path {
-  fill: #181818;
+  fill: var(--fg);
   transition: fill 0.5s;
 }
 
-.dark .theme-toggle__path {
-  fill: #fff;
-}
-
 .theme-toggle__circle {
-  stroke: #181818;
+  stroke: var(--fg);
   transition: stroke 0.5s;
 }
 
-.dark .theme-toggle__circle {
-  stroke: #fff;
-}
-
 .theme-toggle svg:hover .theme-toggle__path {
-  fill: #444;
+  fill: var(--fg-light);
 }
 
 .theme-toggle svg:hover .theme-toggle__circle {
-  stroke: #444;
-}
-
-.dark .theme-toggle svg:hover .theme-toggle__path {
-  fill: #ddd;
-}
-
-.dark .theme-toggle svg:hover .theme-toggle__circle {
-  stroke: #ddd;
-}
-
-.dark {
-  color: #fff;
-  background-color: #181818;
+  stroke: var(--fg-light);
 }
 
 .about {
@@ -133,7 +135,7 @@ a:hover {
 }
 
 .about-text {
-  margin: 0;
+  margin: 16px 0 0 0;
 }
 
 @media (max-width: 40rem) {

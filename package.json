@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Portfolio website",
   "main": "index.html",
+  "type": "module",
   "repository": "https://github.com/ChrisRu/portfolio.git",
   "author": "Christian Ruigrok <christian@ruigrok.info>",
   "license": "MIT",
@@ -13,6 +14,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.2.7"
+    "lightningcss": "^1.24.1",
+    "vite": "^5.2.7",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-singlefile": "^2.0.1"
   }
 }

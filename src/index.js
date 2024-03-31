@@ -19,6 +19,10 @@ function updateTheme(isDark, animate = true) {
 
 let animating = false;
 
+function easing(x) {
+  return x * x * 0.05;
+}
+
 function initAnimation(darkTheme) {
   if (animating) {
     return;
@@ -27,13 +31,13 @@ function initAnimation(darkTheme) {
   animating = true;
 
   const diameter =
-    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2;
+    Math.sqrt(window.outerHeight ** 2 + window.outerWidth ** 2) / 2 / 18; // divided by size of animation-circle
 
   const animationCircle = document.querySelector(".animation-circle");
   animationCircle.style.opacity = 1;
   animationCircle.style.backgroundColor = darkTheme ? "#181818" : "#fff";
 
-  let current = 30;
+  let current = 1.001;
   function animate() {
     if (current > diameter) {
       animationCircle.style.opacity = 0;
@@ -48,12 +52,9 @@ function initAnimation(darkTheme) {
       return;
     }
 
-    current += (current * current) / 800;
+    current += easing(current);
 
-    animationCircle.style.height = `${current}px`;
-    animationCircle.style.width = `${current}px`;
-    animationCircle.style.top = `${-(current / 2) + 13}px`;
-    animationCircle.style.right = `${-(current / 2) + 13}px`;
+    animationCircle.style.transform = `scale(${current})`;
 
     requestAnimationFrame(animate);
   }

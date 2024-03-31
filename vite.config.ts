@@ -15,6 +15,7 @@ export default defineConfig({
     transformer: "lightningcss",
   },
   build: {
+    outDir: "docs",
     cssMinify: "lightningcss",
   },
 });

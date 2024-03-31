@@ -13,6 +13,7 @@ function updateTheme(isDark, animate = true) {
       initAnimation(isDark);
     } else if (isDark) {
       document.body.classList.add("dark");
+      document.querySelector("link[rel='icon']").href = "/favicon-dark.png";
     }
   }
 }
@@ -61,8 +62,10 @@ function initAnimation(darkTheme) {
 
       if (darkTheme) {
         document.body.classList.add("dark");
+        document.querySelector("link[rel='icon']").href = "/favicon-dark.png";
       } else {
         document.body.classList.remove("dark");
+        document.querySelector("link[rel='icon']").href = "/favicon-light.png";
       }
 
       animating = false;
